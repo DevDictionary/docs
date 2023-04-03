@@ -1,3 +1,5 @@
+const moment = require('moment');
+moment.locale("zh-cn");
 // .vuepress/config.js
 module.exports = {
     base: "/docs/",
@@ -6,7 +8,16 @@ module.exports = {
         ['link', { rel: 'icon', href: '/assets/img/logo.png' }],
         ['meta', { name: 'author', content: '郑翼易' }],
     ],
+    plugins: {
+        '@vuepress/last-updated': {
+            transformer: (timestamp) => {
+                return moment(timestamp).format("LLLL")
+            }
+        },
+        '@vuepress/back-to-top': true
+    },
     themeConfig: {
+        lastUpdated: '更新时间',
         logo: '/assets/img/logo.png',
         nav: [
             { text: '首页', link: '/' },
